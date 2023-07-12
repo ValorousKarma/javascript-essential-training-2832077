@@ -6,3 +6,19 @@
  * - Create several objects using the class.
  * - Test the objecs by calling their properties and using their methods in the console.
  */
+
+import GameConsole from "./GameConsole.js";
+
+const nintendoSwitch = new GameConsole(
+	"Nintendo Switch",
+	true,
+	"1080p",
+	60,
+	"Don't Starve Together"
+);
+
+console.log(nintendoSwitch);
+
+nintendoSwitch.changeGame("Hollow Knight");
+
+console.log(nintendoSwitch);

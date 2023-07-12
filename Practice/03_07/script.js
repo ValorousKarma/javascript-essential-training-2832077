@@ -7,3 +7,17 @@
  * - Find an object that has another object inside of it to create a nested object.
  * - Test your objects in the browser console by accessing the entire object and its specific properties.
  */
+
+const gameConsole = {
+	name: "Nintendo Switch",
+	portable: true,
+	videoOutput: {
+		resolution: "720p",
+		framerate: 30,
+	},
+	gameCartridge: "Super Smash Bros",
+
+	changeGame: function (game) {
+		this.gameCartridge = game;
+	},
+};
