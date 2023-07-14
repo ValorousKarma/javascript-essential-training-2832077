@@ -14,46 +14,71 @@
  */
 
 const frogpack = {
-  name: "Frog Backpack",
-  volume: 8,
-  color: "green",
-  pocketNum: 3,
-  strapLength: {
-    left: 10,
-    right: 10,
-  },
-  lidOpen: false,
-  image: "../../assets/images/frog.svg",
-  toggleLid: function (lidStatus) {
-    this.lidOpen = lidStatus;
-  },
-  newStrapLength: function (lengthLeft, lengthRight) {
-    this.strapLength.left = lengthLeft;
-    this.strapLength.right = lengthRight;
-  },
+	name: "Frog Backpack",
+	volume: 8,
+	color: "green",
+	pocketNum: 3,
+	strapLength: {
+		left: 10,
+		right: 10,
+	},
+	lidOpen: false,
+	image: "../../assets/images/frog.svg",
+	description: "A kid's backpack? But I want it?",
+	toggleLid: function (lidStatus) {
+		this.lidOpen = lidStatus;
+	},
+	newStrapLength: function (lengthLeft, lengthRight) {
+		this.strapLength.left = lengthLeft;
+		this.strapLength.right = lengthRight;
+	},
 };
 
 // Baseline HTML output
 const content = `
     <h1 class="backpack__name">${frogpack.name}</h1>
     <ul class="backpack__features">
-      <li class="packprop backpack__volume">Volume:<span> ${
-        frogpack.volume
-      }l</span></li>
-      <li class="packprop backpack__color">Color:<span> ${
-        frogpack.color
-      }</span></li>
-      <li class="packprop backpack__pockets">Number of pockets:<span> ${
-        frogpack.pocketNum
-      }</span></li>
-      <li class="packprop backpack__strap">Left strap length:<span> ${
-        frogpack.strapLength.left
-      } inches</span></li>
-      <li class="packprop backpack__strap">Right strap length:<span> ${
-        frogpack.strapLength.right
-      } inches</span></li>
-      <li class="feature backpack__lid">Lid status:<span> ${
-        frogpack.lidOpen ? "open" : "closed"
-      }</span></li>
+    <li class="packprop backpack__volume">Volume:<span> ${
+		frogpack.volume
+	}l</span></li>
+    <li class="packprop backpack__color">Color:<span> ${
+		frogpack.color
+	}</span></li>
+    <li class="packprop backpack__pockets">Number of pockets:<span> ${
+		frogpack.pocketNum
+	}</span></li>
+    <li class="packprop backpack__strap">Left strap length:<span> ${
+		frogpack.strapLength.left
+	} inches</span></li>
+    <li class="packprop backpack__strap">Right strap length:<span> ${
+		frogpack.strapLength.right
+	} inches</span></li>
+    <li class="feature backpack__lid">Lid status:<span> ${
+		frogpack.lidOpen ? "open" : "closed"
+	}</span></li>
     </ul>  
 `;
+
+const createFigure = (backpack) => {
+	let newFigure = document.createElement("figure");
+	newFigure.classList.add("backpack");
+
+	let newImage = document.createElement("img");
+	newImage.setAttribute("src", backpack.image);
+	newImage.setAttribute("alt", "");
+
+	let newDesc = document.createElement("figcaption");
+	newDesc.innerText = backpack.description;
+
+	newFigure.append(newImage, newDesc);
+	return newFigure;
+};
+
+const createArticle = (figure) => {
+	let article = document.createElement("article");
+	article.innerHTML = content;
+	article.append(createFigure(figure));
+	return article;
+};
+
+document.querySelector("main").append(createArticle(frogpack));
